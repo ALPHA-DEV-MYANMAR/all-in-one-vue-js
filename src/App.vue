@@ -1,30 +1,48 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div>
+    <!-- Props -->
+    <!-- <hello-world name='Aung Paing Soe' age='22' job='Web Developer'/> -->
+    <!-- <hello-world :id="post.id" :title="post.title" ></hello-world> -->
+    <hello-world :post="post"></hello-world>
+
+    <hello-world-2 @do-something='DoSomething'></hello-world-2>
+    <h1>{{ count }}</h1> 
+    <hello-world-2 @submit='Submit'></hello-world-2>
+  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import HelloWorld from "./components/HelloWorld.vue";
+import HelloWorld2 from './components/HelloWorld2.vue';
+export default {
+  data() {
+    return {
+      count: 0,
+      post: [
+        {
+          'id':1,
+          'data': 'hello'
+        },
+        {
+          'id':2,
+          'data': 'world'
+        }
+      ]
+    }
+  },
+  methods: {
+    DoSomething(n){
+      this.count += n;
+    },
+    Submit({email,password}){
+      console.log(email,password)
+    }
+  },
+  components: {
+    HelloWorld,
+    HelloWorld2,
+  },
+};
+</script>
 
-nav {
-  padding: 30px;
-}
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
