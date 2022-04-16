@@ -35,12 +35,14 @@
 
 import citiesColRef from '../firebase';
 import { getDocs , doc , deleteDoc } from 'firebase/firestore';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default {
   name: 'HomeView',
   data() {
     return {
       cities : [],
+      email : '',
     }
   },
   created () {
